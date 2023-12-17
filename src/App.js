@@ -1,4 +1,5 @@
 import { useState } from "react"
+import '../src/styles/bootstrap.min.css'
 
 function App() {
 
@@ -53,26 +54,28 @@ function App() {
 
   }
   return (
-    <div className="App">
+    <div className="App mx-auto container col-6 mt-5">
       {
         showResult === 0 ?
           <div className="">
 
-            <div className="progress">{currentQuestion + 1} / {questions.length}</div>
-            <div className="questions">
+            <div className="bg- rounded p-2">{currentQuestion + 1} / {questions.length}</div>
+            <div className="questions my-3">
               {questions[currentQuestion].question}
             </div>
-            <div className="answers">{
+            <div className="answers">
+              {
               questions[currentQuestion].answers.map((answer) => (
-                <li>
-                  <span className="btn" onClick={()=>{updateDisplay(answer)}}>{answer.answerOption}</span>
-                </li>
+                // <li>
+                  <div className="btn btn-secondary w-100 mb-2" onClick={()=>{updateDisplay(answer)}}>{answer.answerOption}</div>
+                // </li>
               ))
-            }</div>
+            }
+            </div>
           </div>
           :
           <div className="showResult">
-            Your result is:{result}
+            Your result is:{result}/ {questions.length+1}
           </div>
       }
 
