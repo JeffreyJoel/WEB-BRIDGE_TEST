@@ -46,8 +46,8 @@ function App() {
 
   function updateDisplay(answer) {
     checkAnswer(answer)
-    
-    if (currentQuestion > 3) {
+    let updateQuestion = currentQuestion+1
+    if (updateQuestion ===  questions.length) {
       setShowResult(1)
     }
     else{
