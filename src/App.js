@@ -46,11 +46,16 @@ function App() {
 
   function updateDisplay(answer) {
     checkAnswer(answer)
-    setcurrentQuestion(currentQuestion + 1);
-
-    if (currentQuestion +1 < questions.length) {
+    
+    if (currentQuestion > 3) {
       setShowResult(1)
     }
+    else{
+      setShowResult(0)
+      setcurrentQuestion(currentQuestion + 1);
+    }
+   
+
 
   }
   return (
@@ -61,11 +66,11 @@ function App() {
 
             <div className="bg- rounded p-2">{currentQuestion + 1} / {questions.length}</div>
             <div className="questions my-3">
-              {questions[currentQuestion].question}
+              {questions[currentQuestion]?.question}
             </div>
             <div className="answers">
               {
-              questions[currentQuestion].answers.map((answer) => (
+              questions[currentQuestion]?.answers.map((answer) => (
                 // <li>
                   <div className="btn btn-secondary w-100 mb-2" onClick={()=>{updateDisplay(answer)}}>{answer.answerOption}</div>
                 // </li>
@@ -74,9 +79,15 @@ function App() {
             </div>
           </div>
           :
-          <div className="showResult">
-            Your result is:{result}/ {questions.length+1}
-          </div>
+          <></>
+      }
+      {
+        showResult === 1 ?
+        <div className="showResult">
+        Your result is:{result}/ {questions.length}
+      </div>
+      : 
+      <></>
       }
 
     </div>
