@@ -22,7 +22,7 @@ function App() {
         { answerOption: '1994', isAnswer: true },
       ],
     },
- 
+
     {
       question: "Which planet is known as the Red Planet?",
       answers: [
@@ -46,49 +46,58 @@ function App() {
 
   function updateDisplay(answer) {
     checkAnswer(answer)
-    let updateQuestion = currentQuestion+1
-    if (updateQuestion ===  questions.length) {
+    let updateQuestion = currentQuestion + 1
+    if (updateQuestion === questions.length) {
       setShowResult(1)
     }
-    else{
+    else {
       setShowResult(0)
       setcurrentQuestion(currentQuestion + 1);
     }
-   
-
 
   }
+  function goBack() {
+    setcurrentQuestion(0)
+    setShowResult(0)
+  }
+
   return (
     <div className="App mx-auto container col-6 mt-5">
       {
         showResult === 0 ?
           <div className="">
 
-            <div className="bg- rounded p-2">{currentQuestion + 1} / {questions.length}</div>
-            <div className="questions my-3">
+            <div className="h4 rounded p-2 h4">{currentQuestion + 1} / {questions.length}</div>
+            <div className="questions my-3 h5">
               {questions[currentQuestion]?.question}
             </div>
             <div className="answers">
               {
-              questions[currentQuestion]?.answers.map((answer) => (
-                // <li>
-                  <div className="btn btn-secondary w-100 mb-2" onClick={()=>{updateDisplay(answer)}}>{answer.answerOption}</div>
-                // </li>
-              ))
-            }
+                questions[currentQuestion]?.answers.map((answer) => (
+                  // <li>
+                  <div className="btn btn-secondary w-100 mb-2" onClick={() => { updateDisplay(answer) }}>{answer.answerOption}</div>
+                  // </li>
+                ))
+              }
             </div>
           </div>
           :
           <></>
       }
       {
+
         showResult === 1 ?
-        <div className="showResult">
-        Your result is:{result}/ {questions.length}
-      </div>
-      : 
-      <></>
+          <>
+            <div className="showResult h4">
+              Your result is:{result} / {questions.length}
+            </div>
+            <button className="btn btn-success mt-3" onClick={() => {goBack()}}>Go again</button>
+          </>
+          :
+          <></>
       }
+
+
 
     </div>
   );
