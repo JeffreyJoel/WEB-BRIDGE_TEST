@@ -1,4 +1,4 @@
-# React QUiz
+# React Quiz
 This is my submission for the Web3Bridge Assessment. This project was built with React and styled using Bootstrap 5.
 
 ## Function
